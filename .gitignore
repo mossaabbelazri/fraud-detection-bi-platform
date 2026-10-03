@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.env
+
+# Data and Artifacts (Too large for Git)
+data_processed/
+ieee-fraud-detection/
+Fraud/
+*.csv
+*.joblib
+*.pkl
+
+# Academic & Personal Files
+*.pdf
+*.tex
+*.docx
+!README.md
+
+# IDEs and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Visual Studio Build Outputs
+[Bb]in/
+[Oo]bj/
+*.asmdatabase
+*.asm
+*.db
+*.tbl
+*.idfmeta

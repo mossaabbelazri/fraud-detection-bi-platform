@@ -1,0 +1,358 @@
+{
+  "name": "SemanticModel",
+  "compatibilityLevel": 1600,
+  "model": {
+    "culture": "en-US",
+    "dataSources": [
+      {
+        "type": "structured",
+        "name": "SQL/localhost\\MSSQLSERVER01;IEEE_Fraud_DW",
+        "connectionDetails": {
+          "protocol": "tds",
+          "address": {
+            "server": "localhost\\MSSQLSERVER01",
+            "database": "IEEE_Fraud_DW"
+          },
+          "authentication": null,
+          "query": null
+        },
+        "credential": {
+          "AuthenticationKind": "ServiceAccount",
+          "kind": "SQL",
+          "path": "localhost\\mssqlserver01;IEEE_Fraud_DW",
+          "EncryptConnection": false
+        }
+      }
+    ],
+    "tables": [
+      {
+        "name": "Dim_Cards",
+        "columns": [
+          {
+            "name": "CardKey",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "CardKey"
+          },
+          {
+            "name": "Card1",
+            "dataType": "int64",
+            "sourceColumn": "Card1"
+          },
+          {
+            "name": "Card2",
+            "dataType": "int64",
+            "sourceColumn": "Card2"
+          },
+          {
+            "name": "Card3",
+            "dataType": "int64",
+            "sourceColumn": "Card3"
+          },
+          {
+            "name": "Card4",
+            "dataType": "string",
+            "sourceColumn": "Card4"
+          },
+          {
+            "name": "Card5",
+            "dataType": "int64",
+            "sourceColumn": "Card5"
+          },
+          {
+            "name": "Card6",
+            "dataType": "string",
+            "sourceColumn": "Card6"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/localhost\\MSSQLSERVER01;IEEE_Fraud_DW\",",
+                "    dbo_Dim_Cards = Source{[Schema=\"dbo\",Item=\"Dim_Cards\"]}[Data]",
+                "in",
+                "    dbo_Dim_Cards"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Dim_Devices",
+        "columns": [
+          {
+            "name": "DeviceKey",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "DeviceKey"
+          },
+          {
+            "name": "DeviceType",
+            "dataType": "string",
+            "sourceColumn": "DeviceType"
+          },
+          {
+            "name": "DeviceInfo",
+            "dataType": "string",
+            "sourceColumn": "DeviceInfo"
+          },
+          {
+            "name": "OS",
+            "dataType": "string",
+            "sourceColumn": "OS"
+          },
+          {
+            "name": "Browser",
+            "dataType": "string",
+            "sourceColumn": "Browser"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/localhost\\MSSQLSERVER01;IEEE_Fraud_DW\",",
+                "    dbo_Dim_Devices = Source{[Schema=\"dbo\",Item=\"Dim_Devices\"]}[Data]",
+                "in",
+                "    dbo_Dim_Devices"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Dim_Locations",
+        "columns": [
+          {
+            "name": "LocationKey",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "LocationKey"
+          },
+          {
+            "name": "Addr1",
+            "dataType": "int64",
+            "sourceColumn": "Addr1"
+          },
+          {
+            "name": "Addr2",
+            "dataType": "int64",
+            "sourceColumn": "Addr2"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/localhost\\MSSQLSERVER01;IEEE_Fraud_DW\",",
+                "    dbo_Dim_Locations = Source{[Schema=\"dbo\",Item=\"Dim_Locations\"]}[Data]",
+                "in",
+                "    dbo_Dim_Locations"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Fact_Transactions",
+        "columns": [
+          {
+            "name": "TransactionID",
+            "dataType": "int64",
+            "sourceColumn": "TransactionID"
+          },
+          {
+            "name": "TransactionDT",
+            "dataType": "int64",
+            "sourceColumn": "TransactionDT"
+          },
+          {
+            "name": "TransactionAmt",
+            "dataType": "double",
+            "sourceColumn": "TransactionAmt"
+          },
+          {
+            "name": "ProductCD",
+            "dataType": "string",
+            "sourceColumn": "ProductCD"
+          },
+          {
+            "name": "CardKey",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "CardKey"
+          },
+          {
+            "name": "DeviceKey",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "DeviceKey"
+          },
+          {
+            "name": "LocationKey",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "LocationKey"
+          },
+          {
+            "name": "P_emaildomain",
+            "dataType": "string",
+            "sourceColumn": "P_emaildomain"
+          },
+          {
+            "name": "R_emaildomain",
+            "dataType": "string",
+            "sourceColumn": "R_emaildomain"
+          },
+          {
+            "name": "C1",
+            "dataType": "double",
+            "sourceColumn": "C1"
+          },
+          {
+            "name": "C2",
+            "dataType": "double",
+            "sourceColumn": "C2"
+          },
+          {
+            "name": "C11",
+            "dataType": "double",
+            "sourceColumn": "C11"
+          },
+          {
+            "name": "C13",
+            "dataType": "double",
+            "sourceColumn": "C13"
+          },
+          {
+            "name": "C14",
+            "dataType": "double",
+            "sourceColumn": "C14"
+          },
+          {
+            "name": "D1",
+            "dataType": "double",
+            "sourceColumn": "D1"
+          },
+          {
+            "name": "D2",
+            "dataType": "double",
+            "sourceColumn": "D2"
+          },
+          {
+            "name": "D10",
+            "dataType": "double",
+            "sourceColumn": "D10"
+          },
+          {
+            "name": "D15",
+            "dataType": "double",
+            "sourceColumn": "D15"
+          },
+          {
+            "name": "isFraud",
+            "dataType": "int64",
+            "sourceColumn": "isFraud"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/localhost\\MSSQLSERVER01;IEEE_Fraud_DW\",",
+                "    dbo_Fact_Transactions = Source{[Schema=\"dbo\",Item=\"Fact_Transactions\"]}[Data]",
+                "in",
+                "    dbo_Fact_Transactions"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Montant Total Transactions",
+            "expression": " SUM(Fact_Transactions[TransactionAmt])",
+            "formatString": "\\$#,0.00;(\\$#,0.00);\\$#,0.00",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\"><Currency LCID=\"1033\" DisplayName=\"$ Anglais (États-Unis)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Nombre Transactions",
+            "expression": " COUNT(Fact_Transactions[TransactionID])",
+            "formatString": "0"
+          },
+          {
+            "name": "Nombre Fraudes",
+            "expression": " CALCULATE([Nombre Transactions], Fact_Transactions[isFraud] = 1)"
+          },
+          {
+            "name": "Taux Fraude",
+            "expression": " DIVIDE([Nombre Fraudes], [Nombre Transactions], 0)",
+            "formatString": "0.00%;-0.00%;0.00%"
+          },
+          {
+            "name": "Panier Moyen",
+            "expression": " AVERAGE(Fact_Transactions[TransactionAmt])",
+            "formatString": "\\$#,0.00;(\\$#,0.00);\\$#,0.00",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\"><Currency LCID=\"1033\" DisplayName=\"$ Anglais (États-Unis)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "88f13a99-4661-40b9-b6e0-520e11a95b54",
+        "fromTable": "Fact_Transactions",
+        "fromColumn": "CardKey",
+        "toTable": "Dim_Cards",
+        "toColumn": "CardKey"
+      },
+      {
+        "name": "47c61a31-518e-4f65-b909-dd3bd6eb50b0",
+        "fromTable": "Fact_Transactions",
+        "fromColumn": "DeviceKey",
+        "toTable": "Dim_Devices",
+        "toColumn": "DeviceKey"
+      },
+      {
+        "name": "70e02140-efd4-46a3-b363-87ed77d8f376",
+        "fromTable": "Fact_Transactions",
+        "fromColumn": "LocationKey",
+        "toTable": "Dim_Locations",
+        "toColumn": "LocationKey"
+      }
+    ],
+    "annotations": [
+      {
+        "name": "ClientCompatibilityLevel",
+        "value": "700"
+      }
+    ]
+  },
+  "id": "SemanticModel"
+}
